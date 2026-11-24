@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ICON Capital Reserve</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* VOICE: a private reserve: calm, exact, unhurried.
+   IDEA: the 2022 ICON brand book made into a website: Slate pages, Washed Gold reading pages, one gold ring.
+   PICTURE: the mountain fortress at dusk, with the gold ring arc of the 2022 cover.
+   COLOUR and TYPE: Slate #2e3336, Dark Grey #363d45, Gold #c7b273, Light Grey #bdbdbf, Washed Gold #d1c9ba. Montserrat 400/600/700.
+   LAYOUT: same sections and order as icon.gold; sticky header, full menu panel, bands alternate Slate and Washed Gold. */
+:root{color-scheme:dark;--sl:#2e3336;--dg:#363d45;--gd:#c7b273;--lg:#bdbdbf;--wg:#d1c9ba;--line:rgba(199,178,115,.28)}
+:root[data-theme=light],:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{margin:0;background:var(--sl);color:var(--lg);font:16px/1.65 Montserrat,Arial,sans-serif;overflow-x:clip}
+img{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3,h4{font-weight:700;margin:0;text-wrap:balance}
+h2{font-size:clamp(28px,3.4vw,44px);line-height:1.12;color:var(--wg)}
+h3{font-size:20px;line-height:1.3;color:var(--wg)}
+p{margin:0 0 1em}
+.wrap{max-width:1240px;margin:0 auto}
+.band{padding:clamp(56px,7vw,112px) max(5vw,18px);position:relative;overflow:hidden}
+.band.alt{background:var(--dg)}
+.band.light{background:var(--wg);color:var(--dg)}
+.band.light h2,.band.light h3{color:var(--sl)}
+.kicker{font-size:13px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gd);margin-bottom:14px}
+.light .kicker{color:var(--sl)}
+.sub{font-size:clamp(17px,1.6vw,21px);color:var(--lg);font-weight:400;margin-top:12px;max-width:760px}
+.light .sub{color:var(--dg)}
+.rule{width:88px;height:2px;background:var(--gd);margin:26px 0 34px}
+.light .rule{background:var(--sl)}
+.cols{columns:2 420px;column-gap:56px}
+.cols p{break-inside:avoid}
+.ring{position:absolute;border:6px solid var(--gd);border-radius:50%;pointer-events:none}
+/* header */
+header{position:sticky;top:0;z-index:20;background:rgba(46,51,54,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.hd{display:flex;align-items:center;gap:28px;padding:14px max(5vw,18px);max-width:1340px;margin:0 auto}
+.hd .logo img{height:26px;width:auto}
+.hd nav{display:flex;gap:22px;margin-left:auto;flex-wrap:wrap}
+.hd nav a{font-size:14px;font-weight:600;text-decoration:none;color:var(--wg)}
+.hd nav a:hover{color:var(--gd)}
+.btn{font:600 14px Montserrat,sans-serif;background:var(--gd);color:var(--sl);border:0;padding:12px 20px;min-height:44px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn.ghost{background:transparent;color:var(--gd);border:1px solid var(--gd)}
+.btn:focus-visible,a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--gd);outline-offset:3px}
+/* menu panel */
+#menu{position:fixed;inset:0;z-index:30;background:var(--sl);display:none;overflow:auto;padding:24px max(5vw,18px) 48px}
+#menu.open{display:block}
+.mtop{display:flex;justify-content:space-between;align-items:center;max-width:1240px;margin:0 auto 40px}
+.mgrid{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);gap:48px;max-width:1240px;margin:0 auto}
+.mgrid ol{list-style:none;padding:0;margin:0;columns:2 260px;column-gap:40px}
+.mgrid li a{display:block;padding:12px 0;border-bottom:1px solid var(--line);color:var(--wg);text-decoration:none;font-weight:600;font-size:17px}
+.mgrid li a:hover{color:var(--gd)}
+.offices p{margin:0 0 14px;font-size:15px}
+.offices b{color:var(--wg);display:block}
+/* hero */
+.hero{position:relative;min-height:min(92vh,860px);display:flex;align-items:center;padding:clamp(40px,6vw,96px) max(5vw,18px);overflow:hidden}
+.hero>img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:left center}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(46,51,54,.15) 0%,rgba(46,51,54,.55) 40%,rgba(46,51,54,.92) 62%)}
+.hero .in{position:relative;z-index:1;margin-left:auto;width:min(640px,100%)}
+.hero .logo-full{width:min(420px,100%);margin-bottom:34px}
+.hero h1{font-size:clamp(44px,6vw,76px);line-height:1;color:var(--gd)}
+.hero .tag{font-size:14px;font-weight:600;letter-spacing:.12em;color:var(--wg);margin:14px 0 28px;max-width:520px}
+.yr{display:flex;align-items:baseline;gap:20px;flex-wrap:wrap;margin-bottom:24px}
+.yr b{font-size:clamp(56px,7vw,92px);font-weight:400;line-height:1;background:linear-gradient(170deg,#e2d4ae,#c7b273 40%,#8f7d52 62%,#c7b273 82%,#e2d4ae);-webkit-background-clip:text;background-clip:text;color:transparent}
+.yr span{font-weight:600;color:var(--wg);font-size:15px;letter-spacing:.1em}
+.pill{display:inline-block;border:1px solid var(--gd);color:var(--gd);font-weight:600;font-size:14px;letter-spacing:.08em;padding:8px 16px;margin-bottom:26px}
+.facts{display:grid;gap:14px;padding:0;margin:0;list-style:none}
+.facts li{border-top:1px solid var(--line);padding-top:12px;font-size:15px;color:var(--wg)}
+/* three ideals */
+.ideals{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;margin-top:8px}
+.ideal{border-top:2px solid var(--gd);padding-top:22px}
+.ideal h3{font-size:26px;margin-bottom:12px;color:var(--gd)}
+.ideal p{font-size:15px}
+.ideal details summary{cursor:pointer;color:var(--wg);font-weight:600;font-size:14px;list-style:none;min-height:44px;display:flex;align-items:center;gap:8px}
+.ideal details summary::after{content:"+";color:var(--gd);font-size:20px}
+.ideal details[open] summary::after{content:"–"}
+/* people */
+.people{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:48px 56px}
+.person{display:grid;grid-template-columns:112px minmax(0,1fr);gap:24px;align-items:start}
+.person img,.person .mono{width:112px;height:112px;border-radius:50%;object-fit:cover;border:2px solid var(--gd)}
+.person .mono{display:flex;align-items:center;justify-content:center;font-weight:700;font-size:30px;color:var(--gd);background:var(--dg)}
+.person h3{font-size:22px}
+.person .role{color:var(--gd);font-weight:600;font-size:14px;margin:4px 0 14px}
+.person p{font-size:15px}
+/* problems */
+.probs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 56px;margin-top:20px}
+.prob{border-top:1px solid rgba(46,51,54,.3);padding:26px 0 10px}
+.prob h3{font-size:19px;margin-bottom:10px}
+.prob p{font-size:15px}
+/* table */
+.scroll{overflow-x:auto}
+table.cmp{width:100%;border-collapse:collapse;min-width:640px;font-size:15px}
+.cmp th,.cmp td{padding:16px 14px;text-align:center;border-bottom:1px solid var(--line)}
+.cmp th{font-weight:600;color:var(--lg);vertical-align:bottom;font-size:14px;line-height:1.4}
+.cmp th:first-child,.cmp td:first-child{text-align:left;color:var(--gd);font-weight:600;font-size:13px;letter-spacing:.06em}
+.cmp .now{background:rgba(199,178,115,.12);color:var(--wg);font-weight:600}
+.cmp th.now{background:var(--gd);color:var(--sl)}
+.cmp td{white-space:nowrap}
+.note{font-size:13px;color:var(--lg);margin-top:16px}
+/* split */
+.split{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:56px;align-items:start}
+.split.rev{grid-template-columns:minmax(0,1fr) minmax(0,1.35fr)}
+.split figure{margin:0}
+.split figure img{width:100%;aspect-ratio:4/5;object-fit:cover}
+.split figure.sq img{aspect-ratio:1}
+/* vaults */
+.locs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:2px;margin:36px 0 0}
+.locs button{font:600 15px Montserrat,sans-serif;background:var(--dg);color:var(--wg);border:0;padding:18px 12px;min-height:56px;cursor:pointer;text-align:left}
+.locs button span{display:block;font-weight:400;font-size:13px;color:var(--lg)}
+.locs button[aria-selected=true]{background:var(--gd);color:var(--sl)}
+.locs button[aria-selected=true] span{color:var(--sl)}
+.locp{background:var(--dg);padding:clamp(24px,3vw,44px);display:none}
+.locp.on{display:block}
+.locp h3{margin-bottom:14px;color:var(--gd)}
+/* products */
+.quote{border-left:2px solid var(--gd);padding:6px 0 6px 24px;margin:28px 0 0;font-size:19px;line-height:1.5;color:var(--wg);font-weight:600}
+.light .quote{border-color:var(--sl);color:var(--sl)}
+.prodhead{display:flex;gap:20px;align-items:baseline;flex-wrap:wrap}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;margin-top:20px}
+.card{background:var(--dg);padding:28px;border-top:2px solid var(--gd)}
+.card h3{color:var(--gd);margin-bottom:12px}
+.card p{font-size:15px}
+.card p:first-of-type{color:var(--wg)}
+.lao{font-size:clamp(20px,2.2vw,26px);line-height:1.5;color:var(--wg);font-weight:600;max-width:980px;margin:48px 0}
+.lao span{display:block;color:var(--gd);font-size:15px;margin-top:12px}
+/* news */
+.newsbar{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap}
+.newsnav{display:flex;gap:10px}
+.newsnav button{width:48px;height:48px;border:1px solid var(--sl);background:transparent;color:var(--sl);font-size:20px;cursor:pointer}
+.track{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;margin-top:32px;padding-bottom:12px}
+.post{flex:0 0 min(340px,82vw);scroll-snap-align:start;background:rgba(255,255,255,.28);padding:26px;display:flex;flex-direction:column;border-top:2px solid var(--sl)}
+.post time{font-size:13px;font-weight:600;color:var(--dg)}
+.post h3{font-size:17px;margin:10px 0 12px}
+.post p{font-size:14px;flex:1}
+.post a{font-weight:600;font-size:14px;color:var(--sl)}
+/* contact */
+.contact{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:56px}
+.offs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin-top:28px}
+.offs div{border-top:1px solid var(--line);padding-top:14px}
+.offs b{display:block;color:var(--gd);font-size:14px;letter-spacing:.08em}
+.offs a{text-decoration:none;color:var(--wg)}
+form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+form label{font-size:13px;font-weight:600;color:var(--wg);display:grid;gap:6px}
+form .full{grid-column:1/-1}
+input,textarea{font:16px Montserrat,sans-serif;background:transparent;border:0;border-bottom:1px solid var(--lg);color:var(--wg);padding:10px 0;min-height:44px}
+textarea{min-height:120px;resize:vertical}
+#sent{font-size:14px;color:var(--gd);min-height:22px}
+footer{background:#262a2c;padding:48px max(5vw,18px);font-size:14px}
+.ft{max-width:1240px;margin:0 auto;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center}
+.ft img{height:44px;width:auto}
+.ft nav{display:flex;gap:24px}
+.ft a{text-decoration:none;color:var(--wg)}
+.etf{background:#2e3336 url(img/offer_bars.jpg) right center/cover no-repeat}
+.cbg{background:#2e3336 url(img/mani_mountain.jpg) center/cover no-repeat}
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .8s ease,transform .8s ease}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+@media(max-width:1080px){.hd nav{display:none}.hd .btn.menu{margin-left:auto}}
+@media(max-width:900px){.ideals,.people,.probs,.split,.split.rev,.contact,.mgrid{grid-template-columns:minmax(0,1fr)}.locs{grid-template-columns:repeat(2,minmax(0,1fr))}.split figure img{aspect-ratio:16/10}}
+@media(max-width:900px){.etf,.cbg{background-image:linear-gradient(rgba(46,51,54,.9),rgba(46,51,54,.9)),url(img/offer_bars.jpg)}.cbg{background-image:linear-gradient(rgba(46,51,54,.88),rgba(46,51,54,.88)),url(img/mani_mountain.jpg)}}
+@media(max-width:600px){.hero{min-height:auto}.hero::after{background:rgba(46,51,54,.86)}.person{grid-template-columns:72px minmax(0,1fr)}.person img,.person .mono{width:72px;height:72px}form,.offs{grid-template-columns:minmax(0,1fr)}}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="hd">
+  <a class="logo" href="#top" aria-label="ICON Capital Reserve, back to top"><img src="img/icon-short-metallic.svg" alt="ICON"></a>
+  <nav aria-label="Main">
+   <a href="#leadership">Leadership</a><a href="#digital-currency">Problems solved</a><a href="#AUREALS">AUREALS™</a><a href="#vaults">Vaults</a><a href="#cintamani">CINTAMANI™</a><a href="#ip">Innovation</a><a href="#news">News</a>
+  </nav>
+  <a class="btn ghost" href="#contact">Contact us</a>
+  <button class="btn menu" id="openMenu" aria-expanded="false" aria-controls="menu">Menu</button>
+ </div>
+</header>
+
+<div id="menu" role="dialog" aria-label="Menu">
+ <div class="mtop"><img src="img/icon-full-metallic.svg" alt="ICON Capital Reserve — Security. Discretion. Trust." style="width:min(320px,60vw)"><button class="btn ghost" id="closeMenu">Close</button></div>
+ <div class="mgrid">
+  <ol>
+   <li><a href="#leadership">Leadership</a></li>
+   <li><a href="#digital-currency">Problems Solved</a></li>
+   <li><a href="#AUREALS">AUREALS™ Faster Cheaper</a></li>
+   <li><a href="#non-bank-vault-results">100% Physical AU Reserve</a></li>
+   <li><a href="#vaults">Vault Locations</a></li>
+   <li><a href="#cintamani">CINTAMANI™ 100% Physical AU</a></li>
+   <li><a href="#wiener-borse-listed-etf">AUREALS™ 100% Physical AU ETF</a></li>
+   <li><a href="#icon-aurora-non-custodial">ICON AURORA™ UHNW Digital Wallet</a></li>
+   <li><a href="#collateral-for-icon-limitless">ICON LIMITLESS™ Credit Card</a></li>
+   <li><a href="#icon-aura">ICON AURA™ Learn &amp; Earn Wallet</a></li>
+   <li><a href="#icon-autha">ICON AUTHA™ Instant Access Wallet</a></li>
+   <li><a href="#ip">ICON Innovation Partners™ (IP)</a></li>
+   <li><a href="#news">News &amp; Events</a></li>
+   <li><a href="#contact">Contact Us</a></li>
+  </ol>
+  <div class="offices">
+   <div class="kicker">Contact</div>
+   <p><b>Email</b><a href="mailto:reservations@icon.gold">reservations@icon.gold</a></p>
+   <p><b>Dubai</b><a href="tel:+971585614115">+971 58 561 4115</a></p>
+   <p><b>Hong Kong</b><a href="tel:+85281252507">+852 8125 2507</a></p>
+   <p><b>London</b><a href="tel:+442036089018">+44 20 3608 9018</a></p>
+   <p><b>Zurich</b><a href="tel:+41435089150">+41 43 508 9150</a></p>
+  </div>
+ </div>
+</div>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero">
+ <img class="bg" src="img/cover_mountain.jpg" alt="The Matterhorn in cloud">
+ <div class="ring" style="width:min(70vw,900px);aspect-ratio:1;left:-24vw;bottom:-46vw;z-index:1;opacity:.85"></div>
+ <div class="in">
+  <img class="logo-full" src="img/icon-full-metallic.svg" alt="ICON Capital Reserve — Security. Discretion. Trust.">
+  <h1>AUREALS™</h1>
+  <p class="tag">GOLD STANDARD WEALTH PROTECTION FOR UHNW &amp; INSTITUTIONAL INVESTORS SINCE 2013</p>
+  <div class="yr"><b>2026</b><span>VELOCITY ~ LIQUIDITY</span></div>
+  <div class="pill">1:1 PHYSICAL AU RESERVE</div>
+  <ul class="facts">
+   <li>AUREALS™ are a 1-gram Digital Currency fully backed by Insured, REAL AU Bars in Non-Bank Vaults in Shanghai, Hong Kong, Singapore, Dubai &amp; Switzerland.</li>
+   <li>AUREALS™ are Reserved in a bank-like ICON Non-Custodial Digital Wallet offering FX Accounts, Liquidity &amp; an ICON LIMITLESS™ Credit card, fully insured for $1 billion.</li>
+   <li>AUREALS™ KYC &amp; AML Onboarding is completed &lt;7 Seconds in 200+ Countries &amp; Global Transfers are Cleared &amp; Settled on HEDERA Distributed Ledger in &lt;1 second.</li>
+   <li>AUREALS™ can be Reserved by QI’s &amp; Institutional Investors via a 0% Load &amp; 0% Fee Wiener Börse Listed Security offering a SIXSWISS ISIN, EUROCLEAR &amp; Bloomberg.</li>
+  </ul>
+ </div>
+</section>
+
+<!-- SECURITY DISCRETION TRUST -->
+<section class="band alt">
+ <div class="wrap">
+  <div class="kicker">ICON Capital Reserve</div>
+  <h2>Security. Discretion. Trust.</h2>
+  <div class="rule"></div>
+  <div class="ideals">
+   <article class="ideal reveal">
+    <h3>Security</h3>
+    <p>ICON utilises Hedera Hashgraph to achieve the gold standard for security in the field of distributed consensus: Asynchronous Byzantine Fault Tolerance (ABFT).</p>
+    <details><summary>Read more</summary>
+     <p>Other platforms that use coordinators, leaders, or communication timeouts tend to be vulnerable to Distributed Denial of Service (DDoS) attacks against those vulnerable areas. Hashgraph is resilient to these types of attacks against the consensus algorithm, and achieves the theoretical limits of security defined by ABFT. Achieving this level of security at a scale of hundreds of thousands of transactions per second is a fundamental advance in the field of distributed systems and it is the gold standard for security in this category.</p>
+     <p>Many applications require that the consensus order of transactions match the actual order in which the transactions are received by the network. It should not be possible for a single party to prevent the flow of transactions into the network, nor influence the order of transactions in the eventual community consensus. A fair consensus algorithm ensures that if a user can submit a transaction to the network at all, then the transaction will be received by the network and the order in which it was received will be a fair ordering. Hashgraph uniquely ensures that the actual order transactions are received by the community will be reflected in the consensus order. In other words, hashgraph ensures both Fair Access and Fair Ordering.</p>
+     <p>Formal proofs of the ABFT and fairness properties for the hashgraph consensus algorithm exist and have been available for public review since June, 2016. Furthermore, the hashgraph algorithm has been validated as ABFT by a math proof checked by computer using the Coq system in October, 2018.</p>
+    </details>
+   </article>
+   <article class="ideal reveal">
+    <h3>Discretion</h3>
+    <p>Creators and Custodians of Intergenerational wealth readily acknowledge that new statutes and regulations targeting their wealth ensures that Privacy and Compliance are top of mind.</p>
+    <details><summary>Read more</summary>
+     <p>There are four states of Privacy including: Solitude ~ Establishing physical separation from other individuals; Intimacy ~ Inviting select individuals into trusted relationships; Anonymity ~ A desire to restrict information available in the public domain; Reserve ~ Protecting and Controlling access to your data and assets.</p>
+     <p>In 2010, as part of FATCA, US Congress enacted new disclosure requirements for specified foreign financial assets (“SFFAs”). The types of reportable assets include: direct holdings of stock in foreign entities, interests in foreign funds, depository accounts, custodial accounts, or interests in financial institutions. In 2018, the CRS was adopted across the G20 requiring the name and identifying number of the reporting foreign financial institution (FFI) as well as the name and the account number, year end balance, address, tax identification number, date and place of birth of each reportable person.</p>
+     <p>Interestingly, Gold held in a custodial account maintained by an FFI (bank) would be considered reportable, however, Gold held in an independent vault or safety deposit box is exempt from declaration provided (i) the vault is not in an FFI (bank) or (ii) the storage arrangement is not a financial account. ICON CAPITAL RESERVE SA is not an FFI.</p>
+    </details>
+   </article>
+   <article class="ideal reveal">
+    <h3>Trust</h3>
+    <p>Fibonacci’s Golden Mean is a mathematical formula that permeates the fractal design of our world from subatomic DNA structures the patterns of the stars in the universe.</p>
+    <details><summary>Read more</summary>
+     <p>The Golden Mean is embedded in the architecture of our most iconic buildings from the Great Pyramids to Sydney’s Opera House. Since the dawn of humanity, Trusted Sacred Symbols found in places of worship have been generating carrier waves that are literally broadcasting information.</p>
+     <p>Trust can be traced to the neurobiological activity of our human brain. Our increasingly complex world slows decision making, so we use heuristic defaults like intuition and common sense to help the process. Gold has become the heuristic default for 6000 years because across geography, language, culture and economics, it is the numeraire that the entire world agrees on. Gold is Value.</p>
+     <p>The stock of Gold refers to the available c200,000MT mined throughout history and the flow refers to the c2,700MT mined annually. Mathematically, Gold has a stock and flow ratio of 1.35%. The stock of our Planet refers to the c7.45b inhabitants and the flow is a net 80m people added per year. Mathematically, Humanity has a stock and flow ratio of 1.20%.</p>
+     <p>As people move up through Maslow’s Hierarchy of Needs, they create surpluses that are stored in a trusted reserve asset like Gold. Hall’s Law suggests that the stock and flow ratios of Gold and Humanity have been correlated for centuries and the ratios are immune to manipulation.</p>
+    </details>
+   </article>
+  </div>
+ </div>
+</section>
+
+<!-- LEADERSHIP -->
+<section class="band" id="leadership">
+ <div class="wrap">
+  <div class="kicker">Leadership</div>
+  <h2>C-Suite Leadership in Global Finance, Banking, Fund Management, AU Trading &amp; DLT Innovation</h2>
+  <div class="rule"></div>
+  <div class="people">
+   <article class="person reveal"><img src="img/hall.jpg" alt="J. Bradley Hall"><div><h3>J. Bradley Hall</h3><div class="role">Founder, Chairman, CEO</div>
+    <p>Brad is a Founder &amp; C level Exec who has launched &amp; nurtured fintech unicorns in 30+ countries offering real world insights &amp; guidance into monetizing disruption.</p>
+    <p>Brad has deployed disruptive business models challenging outdated &amp; often vulnerable incumbents across cultures &amp; geographies including: the CIS, Asia, EU and the Americas.</p>
+    <p>Brad has orchestrated cUSD$2 billion+ in raises, listings &amp; exits, now based in Dubai focused on Africa, Asia &amp; BRICS.</p></div></article>
+   <article class="person reveal"><img src="img/barnes.jpg" alt="Dr Robert Barnes"><div><h3>Dr Robert Barnes</h3><div class="role">Structured Products</div>
+    <p>Robert, PhD Chartered FCSI (Hon), is an exchange expert with 30 years in financial markets, including CEO of Turquoise and UBS MTF where has garnered multiple industry awards.</p>
+    <p>Robert is a trusted FCA Advisor and serves the National Physical Lab. The CISI awarded him its highest accolade, an Honorary Fellowship and published his article on digital securities.</p>
+    <p>Robert holds a PhD from Cambridge, a BA from Harvard and a CISI Certificate in Ethical Artificial Intelligence.</p></div></article>
+   <article class="person reveal"><img src="img/flohr.jpg" alt="Robert Flohr"><div><h3>Robert Flohr</h3><div class="role">MD Corporate Development</div>
+    <p>Bob has had a long career at McKinsey and Korn Ferry as a Senior Advisor to major banks, asset managers, investors and disruptive fintech and DLT companies.</p>
+    <p>Bob was originally based in New York, spent over 20 years in London, &amp; has been coming to the UAE for 27 years while continuing to work with Boards &amp; CEO’s globally.</p>
+    <p>Bob has advised top tier banks like UBS on restructuring, integration, leadership &amp; succession planning.</p></div></article>
+   <article class="person reveal"><img src="img/kannan.jpg" alt="George Kannan"><div><h3>George Kannan</h3><div class="role">Arab Financial Institutions</div>
+    <p>George was the CEO of the Arab Bankers Association in London since 2009 and has written extensively on banking, recently publishing ‘Beyond Lebanon’s peaks – an Odyssey’.</p>
+    <p>George has been based In London, for 40+ years beginning when he created &amp; managed The Saudi American Bank branch &amp; the associated investment company SCMI.</p>
+    <p>George continues to actively serve on the Boards of Financial &amp; Industrial companies.</p></div></article>
+  </div>
+ </div>
+</section>
+
+<!-- ADVISORS -->
+<section class="band alt">
+ <div class="wrap">
+  <div class="kicker">Ethics, Desire and Focus.</div>
+  <h2>Big Brains, Bigger Ambitions &amp; Actual Rocket Scientists</h2>
+  <div class="rule"></div>
+  <div class="people">
+   <article class="person reveal"><img src="img/tonse.jpg" alt="Dr Raees Tonse"><div><h3>Dr Raees Tonse</h3><div class="role">Longevity and Wellness</div>
+    <p>Raees is an accomplished Oncologist, MBA and an advocate of preventative healthcare who is working closely with several innovative wellness initiatives in the Americas and the Gulf.</p>
+    <p>Raees promotes a proactive approach around longevity and quality of life and biohacking strategies to optimize health and performance as an Ambassador at Global Wellness Institute, USA</p></div></article>
+   <article class="person reveal"><img src="img/fritsche.jpg" alt="David Fritsche"><div><h3>David Fritsche</h3><div class="role">Secure Communications</div>
+    <p>David is a seasoned CTO having 38+ years in technology in private &amp; public sectors.</p>
+    <p>David is a Founder of Secured Communication offering mobile encryption using AES &amp; he previously worked at NASA on Voyager II, Galileo &amp; IRAS projects, winning the Award of Excellence.</p></div></article>
+   <article class="person reveal"><img src="img/adatia.jpg" alt="Asif Adatia"><div><h3>Asif Adatia</h3><div class="role">Trading Platforms</div>
+    <p>Asif is a seasoned technology professional having 38+ years at top tier Investment banks.</p>
+    <p>Asif had numerous leadership roles at Goldman Sachs including being part of the executive management team that setup Goldman Sachs India &amp; he was also the Head of Trading Systems at JP Morgan.</p></div></article>
+   <article class="person reveal"><div class="mono" role="img" aria-label="Kami Rita (photo to be added)">KR</div><div><h3>Kami Rita</h3><div class="role">Honorary Sherpa</div>
+    <p>In 1994 Kami Rita first summited 8848.86m Mt Everest. In May 2023, he completed his 28th.</p>
+    <p>Success is derived via a fusion of leadership &amp; fearless imagination. Contributing &amp; manifesting your own audacious goals is encouraged with special dispensation granted to those who can move mountains.</p></div></article>
+  </div>
+ </div>
+</section>
+
+<!-- PROBLEMS -->
+<section class="band light" id="digital-currency">
+ <div class="wrap">
+  <div class="kicker">Problems solved</div>
+  <h2>Solving Physical AU &amp; Digital Currency Structural Problems</h2>
+  <div class="rule"></div>
+  <p class="sub">Harvard Monetary Scholar Dr Edwin Viera notes that in 30-40 year cycles, players in complex financial systems re-hypothecate assets until the system Apex’s, Implodes &amp; Resets. ICON is purpose built for this exact scenario, using AU to solve for:</p>
+  <div class="probs">
+   <article class="prob reveal"><h3>Central Bank Leased Physical AU Has been Re-hypothecated 300:1 by LBMA Bullion Banks</h3><p>AUREALS™ circulate as AU digital money, reserved 1:1 with Physical AU Bars in fully insured, non-bank vaults. 100% AU backing is legally verified with regular audits, unlike LBMA bullion banks who re-hypothecate (sell) leased Central Bank AU 300:1.</p></article>
+   <article class="prob reveal"><h3>The Value Stored in Physical AU Bars Lacks Velocity</h3><p>CINTAMANI™ embed the Vault issued SKR meta data into an NFT, which is immutably reserved on the Hedera distributed ledger. Each CINTAMANI™ is directly linked 1:1 with a Physical AU Bar. Minting releases 1,000 ~ 1-gram digital AUREALS™, adding Velocity to the Physical AU Bars.</p></article>
+   <article class="prob reveal"><h3>Digital Currencies are subject to Regulatory Uncertainty</h3><p>AUREALS™ are 100% AU backed &amp; purchases of GOLD or AU currencies are not deemed to be securities under the Howey Test, which defines securities as investments of money in a common enterprise and a reasonable expectation of profits to be derived from the efforts of others.</p></article>
+   <article class="prob reveal"><h3>Digital Currencies on Un-regulated Exchanges are Un-suitable for Institutional Investors</h3><p>AUREALS™ are also offered via a Wiener Börse listed ETF type tracker. QI’s &amp; Institutional Investors can trade an AUREALS™ GOLD backed money market fund, with a 0% Load, 0% Management Fees, ISIN issued by SIXSWISS, clearing on EUROCLEAR &amp; quoted on Bloomberg.</p></article>
+   <article class="prob reveal"><h3>Digital Currencies lack REAL Liquidity</h3><p>AUREALS™ sent in any quantum will clear, settle &amp; be irrevocably registered on Hedera in &lt;1 second, without going through a bank. Holders of &gt;25k AUREALS™ enjoy additional Liquidity on Demand with ICON Treasury offering SWAPS for: (i) any currency; (ii) Physical AU; or use as collateral for spend on an ICON LIMITLESS™ card.</p></article>
+   <article class="prob reveal"><h3>Digital Currencies are Slow, Expensive &amp; Environmentally Harmful</h3><p>AUREALS™ clear &amp; settle 10k TPS @ USD$0.0001 per. This is 6x faster than VISA/MC &amp; a quantum leap ahead of BTC (4 TPM @ USD$22.57 per) &amp; ETH (15 TPS @ USD$19.55 per). Consumption of 0.00017 KWH per AUREAL™ transaction obliterates each BTC ~ 885+ &amp; ETH 102+ KWH transactions.</p></article>
+  </div>
+ </div>
+</section>
+
+<!-- FASTER CHEAPER -->
+<section class="band" id="AUREALS">
+ <div class="wrap">
+  <div class="split">
+   <div>
+    <div class="kicker">AUREALS™ Faster Cheaper</div>
+    <h2>AUREALS™ are Faster, Cheaper, Environmentally Sound Money</h2>
+    <div class="rule"></div>
+   </div>
+   <figure class="sq"><img src="img/coin_aureal.jpg" alt="AUREAL fine gold coin" style="max-width:340px;margin-left:auto"></figure>
+  </div>
+  <div class="scroll reveal" style="margin-top:28px">
+   <table class="cmp">
+    <thead><tr><th>ICON AGNOSTIC<br>Distributed Ledger<br>STRATEGY VALIDATED</th><th>2013 V1.0<br>AUREALS™<br>Proof of Work<br>BTC COLORED COIN PROTOCOL</th><th>2017 V2.0<br>AUREALS™<br>Proof of Work<br>ETHEREUM BLOCKCHAIN</th><th class="now">2023 V3.0<br>AUREALS™<br>Proof of Stake<br>HEDERA DIST. LEDGER</th></tr></thead>
+    <tbody>
+     <tr><td>TRANSACTIONS PER SECOND</td><td>15 *PER MINUTE</td><td>15 TPS</td><td class="now">10,000 TPS</td></tr>
+     <tr><td>AVERAGE FEE</td><td>USD$22.57</td><td>USD$19.55</td><td class="now">USD$0.0001</td></tr>
+     <tr><td>TRANSACTION CONFIRMATION</td><td>10-90 MINUTES</td><td>10-20 SECONDS</td><td class="now">&lt;1 SECOND</td></tr>
+     <tr><td>ENERGY PER TRANSACTION</td><td>**885+ KWH</td><td>102+ KWH</td><td class="now">0.00017 KWH</td></tr>
+    </tbody>
+   </table>
+  </div>
+  <p class="note">* Transactions per Minute for BTC Blockchain vs Transactions per Second for Ethereum &amp; Hedera.<br>** A Single BTC transaction consumes 300x electricity consumed by a NY household monthly, resulting in outlawed BTC/ETH mining.</p>
+ </div>
+</section>
+
+<!-- RESERVE -->
+<section class="band alt" id="non-bank-vault-results">
+ <div class="wrap split rev">
+  <figure class="reveal"><img src="img/bars_panel.jpg" alt="1 kilo gold bars"></figure>
+  <div>
+   <div class="kicker">100% Physical AU Reserve</div>
+   <h2>ICON ~ 100% Physical AU</h2>
+   <p class="sub">Non-Bank Vault Reserve ~ Fully Insured ~ 1 Kilo Bars</p>
+   <div class="rule"></div>
+   <p>ICON enters long term AU Dore offtake agreements with producers at a targeted -15% &amp; AU bullion SPOT purchases at a targeted-5%. ICON offers large holders of AU, bespoke Physical AU / AUREALS™ swaps for 60-month terms that includes re-smelting of legacy AU bars &amp; insured vaulting. Private clients holding AUREALS™ continue to enjoy AU appreciation averaging 8% per year (for 50+ years), tapping liquidity on demand, legally assured of end of term AUREAL™ / AU swaps.</p>
+   <p>AUREALS™ are minted at LBMA 2nd fix or spot set daily in London. The bid price of AUREALS™ is spot &amp; key global traders have indicated that 100% AU backed AUREALS™, may trade at a premium to spot +15%, once escape velocity is achieved. This implies 5% to 30% seigniorage on each minted AUREAL™, which may increase further as AUREALS™ become a trusted source for price discovery, replacing 300:1 re-hypothecated LBMA synthetic AU.</p>
+   <p>Creators &amp; Custodians of Intergenerational wealth understand Physical AU stored outside a financial institution like the ICON allocated .9999 Bars in non-bank vaults in Shanghai; Hong Kong; Singapore, Dubai &amp; Switzerland are exempt from declaration. While families utilizing non-bank Vaults may pay 1% in annual fees, ICON enjoys wholesale vaulting rates.</p>
+   <p>The Swiss mountain fortress is a former military facility with an attached private airstrip, luxe hospitality chalet, internal data center &amp; is fully hardened against nuclear, biological, chemical &amp; EMP attacks. Explosion proof security, bullet proof locks, facial recognition, video &amp; 24-hour surveillance all enhance Privacy into the ultimate expression of Security, Discretion &amp; Trust.</p>
+  </div>
+ </div>
+</section>
+
+<!-- VAULTS -->
+<section class="band" id="vaults">
+ <div class="wrap">
+  <div class="split">
+   <div>
+    <div class="kicker">Vault locations</div>
+    <h2>NON Bank Vault Reserve ~ Global Locations</h2>
+    <div class="rule"></div>
+    <p>ICON utilizes fully insured, non-bank vaults in free zones that include Shanghai, Hong Kong, Singapore, Dubai and Switzerland, where our partners operate a former military facility inside a mountain, complete with a private air strip.</p>
+    <p>ICON is not deemed to be a Foreign Financial Institution (FFI ) under FATCA or CRS and is exempt from declaring the Physical AU it vaults, while remaining 100% compliant. Many tier one FFI’s store AU in the same vaults but their customers are rendered creditors and often obligated to declare any amount over US$50,000.</p>
+    <p>The secure vaulting facilities contract to store and insure the ICON Physical AU Bars. The title does not transfer, as the vault operator issues a Safe Keeping Receipt (SKR) to ICON that identifies each individual bar with a Hallmark from the refinery, weight and measure, purity and bar codes.</p>
+   </div>
+   <figure class="reveal"><img src="img/vault_panel.jpg" alt="Vault door"></figure>
+  </div>
+  <div class="locs" role="tablist" aria-label="Vault locations" id="locations">
+   <button role="tab" id="t-sh" aria-selected="true" aria-controls="p-sh">Shanghai<span>China</span></button>
+   <button role="tab" id="t-ch" aria-selected="false" aria-controls="p-ch">Swiss Alps<span>Switzerland</span></button>
+   <button role="tab" id="t-hk" aria-selected="false" aria-controls="p-hk">Hong Kong<span>China</span></button>
+   <button role="tab" id="t-db" aria-selected="false" aria-controls="p-db">Dubai<span>United Arab Emirates</span></button>
+   <button role="tab" id="t-sg" aria-selected="false" aria-controls="p-sg">Singapore<span>Republic of Singapore</span></button>
+  </div>
+  <div class="locp on" role="tabpanel" id="p-sh" aria-labelledby="t-sh"><h3>Shanghai, China</h3><div class="cols">
+   <p>The fully insured Shanghai Gold Exchange (“SGE”) was established in October 2002 by People’s Bank of China (“PBOC”). The SGE enables foreign institutions and individuals to access the Chinese precious metals market by providing trading, clearing, delivery and vaulting services for Physical AU Bullion. The SGE assumes full responsibility and if one trading party defaults when clearing or delivering physical AU, the SGE will guarantee the other party’s interests.</p>
+   <p>The Shanghai International Gold Exchange (“SGEI”) was registered in the Shanghai Pilot Free Trade Zone (FTZ) in September, 2014 where physical AU contracts designed for international AU investors are listed and traded. The SGEI infrastructure encompasses a certified precious metals vault where the physical AU bullion is stored. This SGEI certified vault ring-fenced from the SGE’s network of physical AU vaults that serve the domestic Chinese AU market. The physical AU in the SGEI vault can be freely imported and exported from the FTZ, deemed to be outside of China for customs purposes. This SGEI certified vault “is” ring-fenced from the SGE’s network.</p></div></div>
+  <div class="locp" role="tabpanel" id="p-ch" aria-labelledby="t-ch"><h3>Swiss Alps, Switzerland</h3><div class="cols">
+   <p>The fully insured mountain vault is a former military bunker built deep into the Swiss Alps, complete with a private airstrip and customs office. It was acquired from the Swiss government and the facility was further hardened as a “zero-risk” infrastructure offering protection against nuclear, biological and chemical attacks.</p>
+   <p>The facility offers full EMP (electro-magnetic pulse) protection, including separate explosion proof security zones with bullet proof lock gates, facial recognition, video surveillance and 24 hour civil and military surveillance.</p>
+   <p>Atmospheric over pressure prevents gas from entering the facility with a full ABC protection and a high performance cooling system that utilizes an underground lake to cool down all IT installations for ICON encrypted servers, completed with an automated assay and storage facility for up to 1,500MT of Physical AU Bullion.</p></div></div>
+  <div class="locp" role="tabpanel" id="p-hk" aria-labelledby="t-hk"><h3>Hong Kong, China</h3>
+   <p>The fully insured Hong Kong International Airport Precious Metals Depository, was unveiled by the Financial Secretary of Hong Kong in September 2009. It is operated by the Hong Kong Airport Authority (rated AAA by Standard &amp; Poor’s), which in turn is owned by the Hong Kong Government. Physical AU Bullion moves tax free in and out of the city and literally 50% of the world’s population, including residents of China and India, can be reached within 5 hours of the Hong Kong airport.</p></div>
+  <div class="locp" role="tabpanel" id="p-db" aria-labelledby="t-db"><h3>Dubai, United Arab Emirates</h3>
+   <p>The fully insured DMCC vault in Dubai began operating in April 2009 and is believed to be the largest non-sovereign vault in the Middle East. Dubai is conveniently situated to connect the growing physical AU trade flows to and from the Indian subcontinent, South East Asia, Europe and Africa and the vault has been designed to store large volumes of physical AU bullion while benefiting from the facility’s close proximity to Dubai International Airport, the Deira Gold Souk and Jebel Ali Port.</p></div>
+  <div class="locp" role="tabpanel" id="p-sg" aria-labelledby="t-sg"><h3>Singapore, Republic of Singapore</h3><div class="cols">
+   <p>The fully insured Singapore FreePort in Changi airport opened in May 2010 as a high tech secure storage vault for physical AU bullion and high value collectibles. It is modeled after Swiss freeports as it provides physical AU bullion traders and wealthy collectors with a facility for long term storage and trading while exempt from customs duties or Goods and Services Tax.</p>
+   <p>Singapore’s strategic location, sound infrastructure and excellent connectivity to key markets in Asia makes it an attractive location for vaulting and trading physical AU bullion.</p></div></div>
+ </div>
+</section>
+
+<!-- CINTAMANI -->
+<section class="band light" id="cintamani">
+ <div class="wrap">
+  <div class="kicker">AUREALS™ ~ 100% Physical Backed AU</div>
+  <h2>CINTAMANI™ ~ 100% Physical Backed AU</h2>
+  <p class="sub">Hedera Encrypted NFT Reserve ~ 1 Kilo Financial Bars</p>
+  <div class="rule"></div>
+  <div class="cols">
+   <p>ICON CAPITAL RESERVE SA creates a digital CINTAMANI™, Sanskrit for “Converting Thought Energy into Gold” as a non-fungible token (NFT) by embedding the Vault issued Safe Keeping Receipt (SKR) meta data detailing: (i) refinery hallmark; (ii) purity; (iii) weight; (iv) bar code &amp; (v) vault location, establishing a direct, legally binding, smart contractual link between the CINTAMANI™ &amp; an ICON allocated &amp; insured .9999 Physical AU Bar.</p>
+   <p>CINTAMANI™, are encrypted &amp; securely vaulted on the Hedera Distributed Ledger creating an immutable record of the reserve currency, which cannot be re-hypothecated. The Hedera ledger also ensures there is no single point of regulatory capture or technology failure. The CINTAMANI™ minting process also automatically Mints &amp; Issues 1,000 1-gram AUREALS™, fungible tokens, circulating as AU digital currency.</p>
+   <p>CINTAMANI™ are smart contracts legally defined as an ICON Reserve Currency that cannot be sold, pledged or otherwise re-hypothecated. Once minted, CINTAMANI™ can only be negotiated &amp; redeemed with a minimum of 25,000 AUREALS™, which are then burned, releasing 25 SKR’s linked to 25 allocated ICON Physical AU Reserve .9999 1 kilo AU bars.</p>
+   <p>Each ICON Treasury wallet containing ICON Treasury Reserve CINTAMANI™ &amp; circulating AUREALS™ on Hedera can be: (i) instantly audited &amp; (ii) validated against audits of the SKR meta data &amp; (iii) allocated ICON Physical AU Reserve .9999 1 kilo AU bars, contractually ensuring a 1:1 Physical AU backing is 100% maintained.</p>
+  </div>
+ </div>
+</section>
+
+<!-- ETF -->
+<section class="band etf" id="wiener-borse-listed-etf">
+ <div class="wrap">
+  <div style="max-width:760px">
+   <div class="kicker">AUREALS™ ~ 100% Physical Backed AU</div>
+   <h2>Wiener Börse Listed ETF ~ 1 Gram Financial Security</h2>
+   <div class="rule"></div>
+   <p>AUREALS™ can be Reserved &amp; are negotiable as securities, where QI’s &amp; Institutional Investors can trade a 0% Load &amp; 0% Fee, Wiener Börse Listed ETF type tracker quoted on Bloomberg with clearing on EUROCLEAR. Purchases are fully exempt from KYC/AML allowing institutions to keep AUM in-house &amp; create custody fees for clients who can enjoy an AU backed money market fund that is cheaper &amp; safer than bank deposits.</p>
+   <p>AUREALS™ listed security has precedent in the 2004 GLD ETF, launched with USD$115m AUM, growing to USD$1.3bn in 5 weeks &amp; tripling to USD$4.3bn within 12 months (with AU at cUSD$450 per ounce). AUM quickly exploded 10X to USD$40.2bn, eventually peaking at USD$80bn+. ICON has a goal of disrupting the 20-year-old LBMA synthetic offering with additional Physical AU backed AUREAL™ ETF type listings in key global markets.</p>
+   <p>AUREALS™ can be used to Structure &amp; List various Assets in similar ETF’s featuring AUREALS™ as the numeraire for price discovery with Energy, Soy, Wine, Real Estate &amp; Fine Art all priced in AUREALS™ with clearing &amp; settlement on EUROCLEAR ensuring that the ETF units have limitless liquidity and can be quickly and easily borrowed against.</p>
+   <p>AUREALS™ denominated funds should eventually be unzippable &amp; fungible. (ie you can swap Real Estate, Fine Art or Wine priced in AUREALS™ listed securities for directly held AUREALS™). Brazilian producers of Soy can soon accept AUREALS™ to clear &amp; settle supply contracts with their Chinese buyers, in seconds.</p>
+  </div>
+ </div>
+</section>
+
+<!-- AURORA -->
+<section class="band alt" id="icon-aurora-non-custodial">
+ <div class="wrap">
+  <div class="kicker">AUREALS™ ~ 100% Physical Backed AU</div>
+  <h2>ICON AURORA™ Non-Custodial ~ UHNW Digital Wallet</h2>
+  <div class="rule"></div>
+  <div class="cols">
+   <p>The ICON AURORA™ non-custodial digital wallet is designed for the 26%+ UHNW investors who Goldman Sachs identifies as active crypto investors &amp; perhaps more importantly the 74% non-crypto UHNW investors who historically allocate 10% of their portfolios to AU. They understand the recent US &amp; Swiss bank failures are a warning to accelerate the transfer of debt-based (fiat) deposits out of increasingly insolvent custodians.</p>
+   <p>The AI enabled ICON AURORA™ wallet allows users to transfer any quantum of AUREALS™ anywhere in the world in &lt;1 second all without going through a bank. Transfers are subject to a 3% Velocity Tax &amp; Holders of &gt;25k AUREALS™ enjoy additional privileges including; (i) swapping AUREALS™ for any currency (3%+2% FX) or (ii) CINTAMANI™ (Physical AU Bars) (3%+5% FX); &amp; (iii) pledging AUREALS™ for an ICON LIMITLESS™ Card (3% FX).</p>
+   <p>The ICON AURORA™ wallet is like your own USD$1bn virtual safety deposit box created as a bespoke financial remote control for 223,000 UHNW families &amp; 2,473 billionaires holding US$30T in Businesses &amp; real estate, USD$13T in increasingly risky bank deposits, USD$10T with advisors &amp; USD$9T in cash. This curated group also confirms Asia as #1 in UHNW wealth. The UAE is strategically positioned as a gateway to Gulf &amp; Asian UHNW wealth along the BRI.</p>
+   <p>ICON AURORA™ wallets offer USD$1bn insurance, multi-currency accounts, instant transfers, 7 Second KYC &amp; AML for on-boarding in 200 countries, 1 button Buy/Sell deep liquidity, with global equity trading (coming) &amp; the ICON LIMITLESS™ Biometric credit card with AUREALS™ pledged as collateral offering liquidity on demand.</p>
+  </div>
+  <blockquote class="quote">“ICON AURORA™ non-custodial Digital Wallets include USD$1bn insurance wrapper ensuring AUREALS™ &amp; local stored encrypted keys are fully insured against loss or theft.”</blockquote>
+ </div>
+</section>
+
+<!-- LIMITLESS -->
+<section class="band" id="collateral-for-icon-limitless">
+ <div class="ring" style="width:520px;aspect-ratio:1;right:-330px;top:-340px;opacity:.45"></div>
+ <div class="wrap">
+  <div class="kicker">AUREALS™ ~ 100% Physical Backed AU</div>
+  <h2>Collateral for ICON LIMITLESS™ UHNW Premium Card</h2>
+  <div class="rule"></div>
+  <div class="cols">
+   <p>ICON LIMITLESS™ Ultra Premium credit card is like a secret handshake indicating membership in the Gresham’s Law Sovereign Society, where Good AU money is hoarded &amp; bad fiat money is spent. Card balances are always negative or zero, eliminating pesky reporting requirements &amp; monthly statements can be settled in any currency, preserving the value of the &gt;25k AUREALS™ pledged as collateral.</p>
+   <p>ICON is working closely with VISA, MasterCard &amp; UPI to update a 1950’s payment rail. ICON LIMITLESS™ credit cards reflect partnerships with the pre-eminent biometric card developer and a cutting edge battery designer embedding powerful computing with a Biometric reader; RfID chip; screen, encrypted cold storage and thermal harvesting, printable non-lithium battery tech.</p>
+   <p>Private Members can have the AI enabled global concierge source front row seats minutes before a show, secure a coveted Three Michelin Star reservation, charter a flight on a moments notice or even buy a jet. Cards can be issued to kids away at school, making available additional spend with AUREALS™ anywhere in the world in &lt;1 second. Staff cards can be issued, for instant payment of wages &amp; single use virtual authorization cards can be optimized for provisioning yachts or even enabling discrete purchases.</p>
+   <p>A Billion in assets won’t get you ICON LIMITLESS™ Membership, unless those assets include &gt;25k AUREALS™ (cUSD$1.5m) in which case, you can add up to USD$1bn in AUREALS™ as collateral for your ICON LIMITLESS™ card(s), comfortable in the knowledge you are fully insured.</p>
+  </div>
+ </div>
+</section>
+
+<!-- AURA -->
+<section class="band alt" id="icon-aura">
+ <div class="wrap">
+  <div class="kicker">AUREALS™ ~ 100% Physical Backed AU</div>
+  <h2>ICON AURA™ Learn &amp; Earn Incentivized Wallet</h2>
+  <div class="rule"></div>
+  <div class="cols">
+   <p>The ICON AURA™ wallet also offers 7 Second KYC &amp; AML for Seamless on-boarding of new users in 200 countries. Users who have received the ICON Golden Seal of approved KYC and qualify with the purchase of a minimum of 1 AUREAL™ to enter into the realm of a new Golden Renaissance.</p>
+   <p>ICON has partnered with the top viral marketing experts to design a revenue share model that distributes up to 1% of the Velocity Tax earmarked for distribution partners to ICON AURA™ subscribers across 7 levels of trusted referrals that Members bring into the ecosystem, learning, earning &amp; saving in AUREALS™, forever.</p>
+   <p>While all ICON users are empowered to learn and earn, ICON AURA™ users with the Golden Seal of approved KYC also are entitled to additional privileges that can include Virtual debit cards &amp; links with multi-currency accounts; &lt;25k AUREALS™ cannot be put to ICON Treasury &amp; an approved proprietary earnings accelerator (KPMG) allows ICON to utilize these Velocity Tax earnings to create credit, linked to new bank accounts and virtual debit cards. All boats float in a high tide.</p>
+   <p>The REAL HEARTS Foundation, endowed into perpetuity with 1% of all AUREALS™ Velocity Tax, is mandated to provide Nutrition, Education &amp; a Golden Future for children. Gold to Good to Golden is the mantra &amp; this charitable model supports a learn, earn &amp; save initiative empowering the newly banked to use tools that ultimately help them prosper.</p>
+  </div>
+  <blockquote class="quote">“ICON AURA™ wallet offers 7 Second KYC for Seamless on-boarding in 200 countries validated with the ICON Golden Seal offering access to the new Learn &amp; Earn Incentivized ecosystem”</blockquote>
+ </div>
+</section>
+
+<!-- AUTHA -->
+<section class="band" id="icon-autha">
+ <div class="wrap">
+  <div class="kicker">AUREALS™ ~ 100% Physical Backed AU</div>
+  <h2>ICON AUTHA™ Instant Access Wallet</h2>
+  <div class="rule"></div>
+  <div class="cols">
+   <p>The ICON AUTHA™ wallet allows billions of under banked Global citizens who have been unable to realize their full potential under command &amp; control hierarchies to begin a journey into economic sovereignty. The intuitive and easy to use UX is designed for curious new arrivals into the distributed ledger universe.</p>
+   <p>ICON is seizing this moment to democratize AU money &amp; allow individuals to re-assert their authority by aligning labor directly with compensation. A team of top gamification experts are designing a non-custodial wallet for new DLT users from 5 to 85.</p>
+   <p>While all ICON users enjoy an entertaining experience, the security and encryption are state of the art allowing users to transfer any quantum of AUREALS™ anywhere in the world in &lt;1 second, all without going through a bank, subject to a 3% Velocity Tax.</p>
+   <p>ICON AUTHA™ wallets with &lt;25k AUREALS™ cannot be put to ICON Treasury &amp; a proprietary earnings accelerator fully approved by KPMG allows ICON to utilize these AUREALS™ earnings to create credit that can be deployed in unbanked &amp; under-banked markets.</p>
+   <p>The REAL HEARTS OF GOLD FOUNDATION, endowed into perpetuity with 1% of all AUREALS™ Velocity Tax, is mandated to provide Nutrition, Education &amp; a Golden Future for children. Gold to Good to Golden is the mantra &amp; this charitable model supports a learn, earn &amp; save initiative empowering the newly banked to use tools that ultimately help them prosper.</p>
+  </div>
+ </div>
+</section>
+
+<!-- INNOVATION PARTNERS -->
+<section class="band alt" id="ip">
+ <div class="wrap">
+  <div class="kicker">ICON Innovation Partners™</div>
+  <h2>The Best Way to Predict the Future? Create It.</h2>
+  <div class="rule"></div>
+  <div class="cards">
+   <article class="card reveal"><h3>ICON iPAY™</h3><p>Security. Discretion. Trust. Re-imagined by disruptive innovators challenging outdated and vulnerable models with a brave new de-centralized architecture as the Foundation.</p><p>iPAY™ incorporates fintech licenses, IBAN’s, Biometric Cards, KYC &amp; AML, API’s for onboarding &amp; liquidity on demand &amp; of course AUREALS™ for anytime, anywhere transfers &lt;1 second via the Hedera distributed ledger.</p></article>
+   <article class="card reveal"><h3>ICON iBANK™</h3><p>Security. Discretion. Trust. Re-imagined as fusion of 100% GOLD backed AUREALS™, IBAN’s &amp; ICON LIMITLESS™ cards on a distributed ledger-based banking platform.</p><p>iBANK™ offers Military Grade Security, Bank Grade KYC/AML, ICONx™ global liquidity with the entire platform offered as a turn-key solution to partners ready for a multi-polar settlement &amp; currency world.</p></article>
+   <article class="card reveal"><h3>ICON iVAULT™</h3><p>Security. Discretion. Trust. Re-imagined as a fusion of 100% GOLD Backed AUREALS™ and a handheld, air-gapped, hardware device engineered by Hedera DLT advocates.</p><p>iVAULT™ includes a huge insurance wrapper and embeds state of the art security in a design ethos reflecting an inspired engineering team who share our enthusiasm for Hedera distributed ledgers and AUREALS™.</p></article>
+   <article class="card reveal"><h3>ICON iD™</h3><p>Security. Discretion. Trust. Re-imagined as fusion of 100% GOLD backed AUREALS™ and a biometric tokenized identity service with keys firmly controlled by the User.</p><p>iD™ offers instant DLT Authentication and provides an overarching security layer ensuring an unbreakable link between secure, encrypted physical &amp; digital identity that can be transferred and confirmed anywhere in seconds.</p></article>
+  </div>
+  <p class="lao">“Thoughts provoke Words. Words become Actions. Actions become Habits. Habits define your Character. Character Manifests Your Destiny.”<span>Lao Tzu</span></p>
+  <div class="cards">
+   <article class="card reveal"><h3>ICONx™</h3><p>Security. Discretion. Re-imagined as a fusion of 100% GOLD backed AUREALS™ offering liquidity on demand for clearing, settlement, trading and stable margin operations.</p><p>ICONx™ offers Digital Exchanges; Custody Providers, Liquidity Pools; OTC Desks; Hedge Funds; Asset Managers; and Banks a 100% GOLD backed, Tier 1 Asset as collateral for trading and lending.</p></article>
+   <article class="card reveal"><h3>AUREALSx™</h3><p>Security. Discretion. Trust. Re-imagined as a fusion of 100% GOLD backed AUREALS™ and any asset or set of cash flows, providing instant GOLD based clearing, settlement and registration.</p><p>AUREALSx™ wrappers for Brazilian Agriculture (SOYAUREALS™); African Mineral Reserves (COAUREALS™); Energy storage (VAUREALS™); EU Carbon Credits (CAUREALS™) + Stealth projects.</p></article>
+   <article class="card reveal"><h3>REAL HEARTS of GOLD</h3><p>Security. Discretion. Trust. Re-imagined as a fusion of 100% GOLD Backed AUREALS™ and 1% of the Velocity Tax generated endowing the REAL HEARTS of GOLD FOUNDATION, into perpetuity.</p><p>REAL HEARTS of GOLD has a mandate to provide children with Nutrition, Education and Opportunities. We are honored to begin manifesting a Golden Future for Humanity. Right Here. Right Now.</p></article>
+  </div>
+ </div>
+</section>
+
+<!-- NEWS -->
+<section class="band light" id="news">
+ <div class="wrap">
+  <div class="newsbar">
+   <div><div class="kicker">News &amp; Events</div><h2>News &amp; Events</h2></div>
+   <div class="newsnav"><button id="prev" aria-label="Previous news">←</button><button id="next" aria-label="Next news">→</button></div>
+  </div>
+  <div class="track" id="track" tabindex="0" aria-label="News and events, newest first"></div>
+ </div>
+</section>
+
+<!-- CONTACT -->
+<section class="band cbg" id="contact">
+ <div class="wrap contact">
+  <div>
+   <div class="kicker">Any Questions?</div>
+   <h2>Contact Information</h2>
+   <div class="rule"></div>
+   <p>No matter where you are, we are easily accessible in each country.</p>
+   <div class="offs">
+    <div><b>DUBAI</b><a href="tel:+971585614115">+971 58 561 4115</a></div>
+    <div><b>HONG KONG</b><a href="tel:+85281252507">+852 8125 2507</a></div>
+    <div><b>LONDON</b><a href="tel:+442036089018">+44 20 3608 9018</a></div>
+    <div><b>ZURICH</b><a href="tel:+41435089150">+41 43 508 9150</a></div>
+    <div><b>EMAIL</b><a href="mailto:reservations@icon.gold">reservations@icon.gold</a></div>
+   </div>
+  </div>
+  <form id="cform" novalidate>
+   <label>First Name<input id="fn" name="first" autocomplete="given-name" required></label>
+   <label>Surname<input id="sn" name="surname" autocomplete="family-name" required></label>
+   <label>Email Address<input id="em" name="email" type="email" autocomplete="email" required></label>
+   <label>Mobile<input id="mo" name="mobile" type="tel" autocomplete="tel"></label>
+   <label class="full">Message<textarea id="msg" name="message"></textarea></label>
+   <div class="full"><button class="btn" type="submit">Send</button></div>
+   <p id="sent" class="full" role="status" aria-live="polite"></p>
+  </form>
+ </div>
+</section>
+</main>
+
+<footer>
+ <div class="ft">
+  <img src="img/icon-full-metallic.svg" alt="ICON Capital Reserve — Security. Discretion. Trust.">
+  <nav aria-label="Footer"><span>Privacy Policy</span><span>LinkedIn</span></nav>
+  <span>Gold Standard Wealth Protection for UHNW &amp; Institutional Investors</span>
+ </div>
+</footer>
+
+<script>
+{
+const news=[
+["ICON CAPITAL RESERVE SA to Unveil AUREALS™ at BRICS event RIO 2025","Jun 20, 2025","AUREALS™ 100% AU backed Digital Currency for encrypted global settlement and clearing across BRICS","icon-capital-reserve-sa-to-showcase-aureals-at-brics-event-rio-2025/"],
+["ICON CAPITAL RESERVE SA to Showcase AUREALS™ at BRICS event Dubai 2024","Jun 4, 2024","AUREALS™ AU backed Sound Money offer stability and security in an increasingly volatile global financial landscape","icon-capital-reserve-sa-to-showcase-aureals-at-brics-event-dubai-2024/"],
+["ICON CAPITAL RESERVE SA BRICS & Sunsetting of the USD$ Nashville 2023","Oct 6, 2023","J Bradley Hall Joins CEO Series Host Steve Abramowicz to discuss the Golden Digital Future for AUREALS™ in 2023","icon-capital-reserve-sa-brics-sunsetting-of-the-usd-nashville-2023/"],
+["ICON CAPITAL RESERVE SA AUREALS™ Align Effort & Rewards Dubai 2023","Sep 1, 2023","Nelson Mandela said Money won't create success but the freedom to make it will. AUREALS™ empower users in 2023","icon-capital-reserve-sa-aureals-empower-users-to-align-effort-with-rewards-dubai-2023/"],
+["ICON CAPITAL RESERVE SA AUREALS™ are 100% AU backed Money Dubai 2023","Aug 8, 2023","Ben Franklin said Time is Money. JP Morgan said Gold is Money. AUREALS™ cleared <1 second means they are both right in 2023","icon-capital-reserve-sa-aureals-are-100-au-backed-money-dubai-2023/"],
+["ICON CAPITAL RESERVE SA AUREALS™ are the Web 3.0 Killer App Dubai 2023","Jun 20, 2023","ICON AUTHA™ Wallets may unleash a Netscape, Google & E-Mail like Tsunami of Web 3.0 users in 2023","icon-capital-reserve-sa-sees-golden-future-for-new-wallets-dubai-2023/"],
+["182 year old Swiss COFRA Joins Hedera Governing Council Zug 2023","May 17, 2023","60,000 people in Europe, Americas & Asia engaging in entrepreneurship & striving to be a force for good in 2023","cofra-182-year-old-family-enterprise-joins-hedera-governing-council-2023-zug/"],
+["Dell Joins Hedera Governing Council as 39th Member Round Rock 2023","Feb 7, 2023","Dell's 133,000 employees can now access Hedera to develop Decentralized Applications for edge computing in 2023","dell-joins-hedera-governing-council-to-develop-decentralized-applications-austin-2023/"],
+["£508 billion abrdn plc Joins Hedera Governance Council Edinburgh 2022","Oct 6, 2022","abrdn plc with £508 billion in assets is making Hedera the technology of choice for investment fund tokenization in 2022","500-billion-investment-giant-abrdn-plc-joins-hedera-governance-council-edinburgh-2022/"],
+["ICON CAPITAL RESERVE SA AUREALS™ & CINTAMANI™ on Hedera Dubai 2022","Aug 8, 2022","Fastest 100% AU AUREALS™ & Safest 100% AU Reserve NFT CINTAMANI™ now live on Hedera Dubai in 2022","icon-capital-reserve-sa-confirms-aureals-and-cintamani-now-live-on-hedera-sao-paulo-2022/"],
+["ICON CAPITAL RESERVE SA & Hedera Foundation Funding Nevis 2022","Jan 22, 2022","Funding Fastest 100% AU AUREALS™ & Safest 100% AU Reserve NFT CINTAMANI™ development on Hedera Nevis in 2022","icon-capital-reserve-sa-hedera-foundation-execute-funding-agreement-2022/"],
+["Singapore’s Oldest Bank Joins Hedera Governing Council Singapore 2021","Oct 27, 2021","DBS is South Asia’s biggest bank in terms of market capitalization, with over 9 million customers across 18 markets","singapores-oldest-bank-dbs-joins-hedera-governing-council-singapore-in-2021/"],
+["Africa’s Biggest Bank Joins Hedera Governing Council Johannesburg 2021","Feb 24, 2021","Standard Bank is Africa's biggest bank, with over 18 million customers across 1000 branches on the continent","1624-2/"],
+["ICON CAPITAL RESERVE SA To Deploy SOYAUREALS™ in St Petersburg in 2020","Nov 17, 2020","100% AU backed Digital Settlement Currency SOYAUREALS™ for SOY revealed in St Petersburg in 2020","1451-2/"],
+["ICON CAPITAL RESERVE SA To Deploy AUREALS™ ETF Tracker in Zurich in 2020","Sep 7, 2020","The Genesis of the World's first 100% AU based Digital Currency AUREALS™ ETF Tracker began in Zurich in 2020","icon-capital-reserve-sa-to-deploy-aureals-on-listed-etf-tracker-in-zurich-in-2020/"],
+["Google Joins Hedera Governing Council Mountain View 2020","Feb 11, 2020","Google the largest internet company states the US leads search originating 30% with both Brazil & India in 2nd with 4% in 2020","1630-2/"],
+["ICON CAPITAL RESERVE SA To Deploy CINTAMANI™ on Hedera in Bangkok in 2019","Aug 8, 2019","The Genesis of the World's safest 100% AU based Digital Reserve NFT CINTAMANI™ began in Bangkok in 2019","icon-capital-reserve-sa-to-deploy-cintamani-on-hedera-in-bangkok-in-2019/"],
+["ICON CAPITAL RESERVE SA To Deploy AUREALS™ on Hedera in London in 2019","Jun 14, 2019","The Genesis of the World's fastest 100% AU based Digital Currency AUREALS™ began in London in 2019","1409-2/"],
+["Strategic Investment in Implantable Chip KYC in Sweden in 2019","Jan 14, 2019","The Genesis of the World's first DLT based Implantable Chip KYC with AUREALS™ began in Sweden in 2019","1325-2/"],
+["George Gilder’s Book ‘Life After Google’ Highlights Hedera Seattle 2018","Aug 8, 2018","Gilder views the dominance of Google, Apple and Facebook to a time when humans thought the world was flat in 2018","futurist-george-gilders-new-book-life-after-google-highlights-hedera-new-york-2018/"],
+["Dot Com to Blockchain & why BTC was just the Beginning London 2018","May 24, 2018","World's first 100% AU backed Digital Currency AUREALS™, BTC & a Banking Crisis, discussed in London in 2018","1430-2/"],
+["Family Office Investor & Real World Asset (RWA) Investing London 2018","May 4, 2018","The Genesis of the World's first DLT based Architecture for RWA Investing with AUREALS™ discussed in London in 2018","family-office-investor-does-a-deep-dive-on-real-world-asset-rwa-investing-with-icon-founder-j-bradley-hall-in-london-in-2018/"],
+["Experts Contemplate the Future of a Distributed Ledger City Dubai 2017","May 29, 2017","The Genesis of the World's first Distributed Ledger Tech (DLT) City discussed in Dubai in 2017","experts-contemplate-the-future-of-a-blockchain-city-in-dubai-in-2017/"],
+["Alchemy, Luck, Timing & Opportunity Align in Monaco in 2016","May 24, 2016","Tokenized fun with AU sunsets & 40 super cars running from Venice to Hercules for the Monaco F1 in 2016.","take-risks-if-necessary-fail-quickly-when-you-are-on-the-right-track-press-your-foot-to-the-floor-when-luck-timing-and-opportunity-align-you-can-create-alchemy-dont-forget-to-enjoy-the-ride/"],
+["AU Arrives on the Blockchain via the Colored Coin Protocol Panama 2015","Mar 5, 2015","ICON and Partner Coinprism Launch AUREALS™ Utilizing Gold as Numeraire in Panama in 2015","au-arrives-on-the-blockchain-via-the-colored-coin-protocol-in-2015/"],
+["ICON CAPITAL RESERVE SA First Publicly Traded DLT Company London 2014","Aug 7, 2014","The Genesis of the World's first DLT focused Publicly traded Company began with ICON in London in 2014","1331-2/"],
+["BRICS USD$100bn New Development Bank Launches in Shanghai 2013","Jul 1, 2013","The Genesis of the Aspirational BRICS AU backed Digital Currency (announced 08/23/23) began in Shanghai in 2013","brics-new-development-bank-established-in-shanghai-with-usd100bn-in-2013/"],
+["AU Trading Platform Ranked #1 Start up Launches Hong Kong 2012","Jul 1, 2012","The Genesis of the world's first 100% AU backed Digital Currency AUREALS™ began in Hong Kong in 2012","au-trading-platform-ranked-1-start-up-in-hong-kong-in-2012/"]];
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const track=document.getElementById('track');
+track.innerHTML=news.map(([t,d,s,u])=>`<article class="post"><time>${esc(d)}</time><h3>${esc(t)}</h3><p>${esc(s)}</p><a href="https://icon.gold/${esc(u)}">Read More →</a></article>`).join('');
+const step=()=>(track.querySelector('.post')?.getBoundingClientRect().width||340)+20;
+document.getElementById('prev').addEventListener('click',()=>track.scrollBy({left:-step(),behavior:'smooth'}));
+document.getElementById('next').addEventListener('click',()=>track.scrollBy({left:step(),behavior:'smooth'}));
+track.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){e.preventDefault();track.scrollBy({left:step()})}if(e.key==='ArrowLeft'){e.preventDefault();track.scrollBy({left:-step()})}});
+
+const menu=document.getElementById('menu'),om=document.getElementById('openMenu');
+const setMenu=o=>{menu.classList.toggle('open',o);om.setAttribute('aria-expanded',o);document.body.style.overflow=o?'hidden':''};
+om.addEventListener('click',()=>setMenu(true));
+document.getElementById('closeMenu').addEventListener('click',()=>setMenu(false));
+menu.addEventListener('click',e=>{if(e.target.closest('a'))setMenu(false)});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')setMenu(false)});
+
+const tabs=[...document.querySelectorAll('.locs [role=tab]')];
+const pick=t=>{tabs.forEach(x=>{const on=x===t;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;document.getElementById(x.getAttribute('aria-controls')).classList.toggle('on',on)})};
+tabs.forEach((t,i)=>{t.addEventListener('click',()=>pick(t));t.addEventListener('keydown',e=>{const d=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0;if(d){const n=tabs[(i+d+tabs.length)%tabs.length];pick(n);n.focus()}})});
+pick(tabs[0]);
+
+document.getElementById('cform').addEventListener('submit',e=>{
+ e.preventDefault();
+ const f=e.target, out=document.getElementById('sent');
+ if(!f.first.value.trim()||!f.surname.value.trim()||!/\S+@\S+\.\S+/.test(f.email.value)){out.textContent='Please add your first name, surname and a valid email address.';return}
+ out.textContent='This preview does not send messages yet. Please email reservations@icon.gold or call one of our offices.';
+});
+
+const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+}
+</script>
+</body>
+</html>
